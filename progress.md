@@ -13,3 +13,7 @@
 -First GDB session: breakpoint, `print`, `x/Nw` for memory inspection
 -Concept learned: undefined behavior on out-of-bound vector access
 
+## day 3 
+- the syntax of C++ : int x = 5; (copy inisialization) - and - x{5}; (uniform initialization)
+- '\n' is faster than std::endl
+- undefined behavior : avoid as much possible
