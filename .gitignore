@@ -73,4 +73,4 @@ Testing/
 
 # compiled binaries without extension (Linux convention)
 01-hello/hello
-**/build/
+**/build/02-basics/calc
