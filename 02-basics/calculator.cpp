@@ -43,15 +43,16 @@ int main()
         }
         else
         {
-
             // std::cout<<"the remainder is : " << static_cast<int>(a) % static_cast<int>(b) <<'\n';
 
             std::cout << "the remainder is : " << std::fmod(a, b) << '\n';
         }
+    } else if (op == '^')
+    {
+        std::cout << "the result is : " << std::pow(a, b) << '\n';
     }
     else
     {
-
         std::cout << "invalid operator" << '\n';
     }
 }
