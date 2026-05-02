@@ -17,3 +17,7 @@
 - the syntax of C++ : int x = 5; (copy inisialization) - and - x{5}; (uniform initialization)
 - '\n' is faster than std::endl
 - undefined behavior : avoid as much possible
+## Day 4 
+- the functions declaration and definition
+- using namespace std; is toxic in the header
+- header guard => double inclusion
