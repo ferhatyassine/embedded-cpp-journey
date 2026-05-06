@@ -153,9 +153,38 @@ void cmd_list() {
 // --- Stubs (still TODO, will be implemented in Step 5) ---
 
 void cmd_done(int id) {
-    std::cout << "TODO: Mark task with id " << id << " as done\n";
+std::vector<Task> tasks = load_tasks();
+    bool found = false;
+    for (auto& task : tasks) {
+        if (task.id == id) {
+            task.done = true;
+            found = true;
+            break;
+            
+
+        }
+    }
+    if (!found){
+        std::cout << "Error: no task with id " << id << '\n';
+        return;
+    }
+    save_tasks(tasks);
 }
 
 void cmd_remove(int id) {
-    std::cout << "TODO: Remove task with id " << id << '\n';
+    std::vector<Task> tasks = load_tasks();
+    bool found = false;
+    for (auto it = tasks.begin(); it != tasks.end(); ++it) {
+        if (it->id == id) {
+            tasks.erase(it);
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        std::cout << "Error: no task with id " << id << '\n';
+        return;
+    }
+    save_tasks(tasks);
+    std::cout << "Removed task " << id << '\n';
 }

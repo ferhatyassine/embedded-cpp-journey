@@ -32,3 +32,17 @@
 - double:        8 bytes
 - long double:        16 bytes
 - bool:        1 bytes
+
+## Day 6 — Project complete: TODO CLI
+
+### Implemented
+- `cmd_done(id)` : load → modify task.done → save
+- `cmd_remove(id)` : load → erase by iterator → save
+- Error handling for "id not found"
+- README dedicated to 03-todo
+
+### Concepts learned
+- `auto&` (mutable reference) vs `const auto&` (read-only)
+- Iterators: `begin()`, `end()`, `++it`, `it->`
+- `vector::erase(iterator)` and iterator invalidation
+- Importance of `break;` after `erase` in a loop
