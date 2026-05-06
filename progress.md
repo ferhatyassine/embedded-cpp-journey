@@ -21,3 +21,14 @@
 - the functions declaration and definition
 - using namespace std; is toxic in the header
 - header guard => double inclusion
+## Day 5 
+### object sizes and the sizeof operator
+- char:         1bytes
+- short:        2 bytes
+- int  :        4 bytes
+- long:         8 bytes
+- long long:        8 bytes
+- float:        4 bytes
+- double:        8 bytes
+- long double:        16 bytes
+- bool:        1 bytes

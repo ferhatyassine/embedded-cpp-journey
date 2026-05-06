@@ -75,3 +75,7 @@ Testing/
 01-hello/hello
 **/build/
 02-basics/calc
+
+# Day 5 - TODO CLI
+03-todo/todo
+03-todo/todo.txt
