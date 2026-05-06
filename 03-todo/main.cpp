@@ -1,37 +1,23 @@
-// main.cpp - Simple CLI todo list (Day 6 project)
+// main.cpp - CLI todo list — entry point and command dispatch
 //
 // Usage:
 //   ./todo add "task title"
 //   ./todo list
 //   ./todo done <id>
 //   ./todo remove <id>
-//
-// Tasks are persisted in todo.txt (format: id|title|done per line).
+
+#include "task.h"
 
 #include <iostream>
 #include <string>
-#include <vector>
-#include <fstream>
 
-// File where tasks are persisted (next to the binary)
-const std::string TODO_FILE{"todo.txt"};
-
-// Data structure: one task = id + title + done flag
-struct Task {
-    int id{};
-    std::string title{};
-    bool done{false};
-};
-
-// --- Function declarations ---
-std::vector<Task> load_tasks();
-void save_tasks(const std::vector<Task>& tasks);
+// --- Command function declarations (defined below) ---
 void cmd_add(const std::string& title);
 void cmd_list();
 void cmd_done(int id);
 void cmd_remove(int id);
 
-// --- main ---
+// --- main: parse arguments and dispatch ---
 int main(int argc, char* argv[]) {
     if (argc < 2) {
         std::cout << "Usage: " << argv[0] << " <command> [args...]\n";
@@ -73,57 +59,11 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-// --- File I/O helpers ---
-
-std::vector<Task> load_tasks() {
-    std::vector<Task> tasks;
-    std::ifstream file(TODO_FILE);
-
-    if (!file.is_open()) {
-        // File doesn't exist yet (first run) — that's OK, return empty list
-        return tasks;
-    }
-
-    std::string line;
-    while (std::getline(file, line)) {
-        // Parse "id|title|done"
-        size_t first_sep = line.find('|');
-        size_t last_sep = line.rfind('|');
-
-        if (first_sep == std::string::npos || last_sep == first_sep) {
-            continue;  // malformed line, skip silently
-        }
-
-        Task task;
-        task.id = std::stoi(line.substr(0, first_sep));
-        task.title = line.substr(first_sep + 1, last_sep - first_sep - 1);
-        task.done = (line.substr(last_sep + 1) == "1");
-
-        tasks.push_back(task);
-    }
-
-    return tasks;
-}
-
-void save_tasks(const std::vector<Task>& tasks) {
-    std::ofstream file(TODO_FILE);
-    if (!file.is_open()) {
-        std::cerr << "Error: cannot open " << TODO_FILE << " for writing.\n";
-        return;
-    }
-
-    for (const auto& task : tasks) {
-        file << task.id << '|' << task.title << '|'
-             << (task.done ? '1' : '0') << '\n';
-    }
-}
-
 // --- Command implementations ---
 
 void cmd_add(const std::string& title) {
     std::vector<Task> tasks = load_tasks();
 
-    // Compute new id (max existing id + 1, or 1 if list is empty)
     int new_id = 1;
     for (const auto& task : tasks) {
         if (task.id >= new_id) new_id = task.id + 1;
@@ -150,29 +90,30 @@ void cmd_list() {
     }
 }
 
-// --- Stubs (still TODO, will be implemented in Step 5) ---
-
 void cmd_done(int id) {
-std::vector<Task> tasks = load_tasks();
+    std::vector<Task> tasks = load_tasks();
+
     bool found = false;
     for (auto& task : tasks) {
         if (task.id == id) {
             task.done = true;
             found = true;
             break;
-            
-
         }
     }
-    if (!found){
-        std::cout << "Error: no task with id " << id << '\n';
+
+    if (!found) {
+        std::cout << "Error: no task with id " << id << " found.\n";
         return;
     }
+
     save_tasks(tasks);
+    std::cout << "Marked task " << id << " as done.\n";
 }
 
 void cmd_remove(int id) {
     std::vector<Task> tasks = load_tasks();
+
     bool found = false;
     for (auto it = tasks.begin(); it != tasks.end(); ++it) {
         if (it->id == id) {
@@ -181,10 +122,12 @@ void cmd_remove(int id) {
             break;
         }
     }
+
     if (!found) {
-        std::cout << "Error: no task with id " << id << '\n';
+        std::cout << "Error: no task with id " << id << " found.\n";
         return;
     }
+
     save_tasks(tasks);
-    std::cout << "Removed task " << id << '\n';
+    std::cout << "Removed task " << id << ".\n";
 }
