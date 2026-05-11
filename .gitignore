@@ -81,3 +81,7 @@ Testing/
 03-todo/todo.txt
 # chapter 6 playground binaries
 04-cpp-essentials/ch05/06_operators
+
+# Chapter 12 playground binaries
+04-cpp-essentials/ch12/01_references
+04-cpp-essentials/ch12/02_pass_by_ref
