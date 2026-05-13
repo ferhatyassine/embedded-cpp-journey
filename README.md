@@ -22,3 +22,14 @@ Personal learning portfolio focused on:
 - ELF binary inspection with `file`
 - GDB session: breakpoints, `print`, `x/Nw` for memory inspection
 - Concept learned: undefined behavior on out-of-bounds vector access
+
+## Project structure
+
+- `task.h`   : Task data structure and file I/O API (declarations)
+- `task.cpp` : File I/O implementation (load/save)
+- `main.cpp` : CLI dispatch and command logic (entry point)
+
+Build with both source files:
+
+bash
+g++ -Wall -Wextra -std=c++17 main.cpp task.cpp -o todo
