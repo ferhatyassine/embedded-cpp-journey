@@ -85,3 +85,11 @@ Testing/
 # Chapter 12 playground binaries
 04-cpp-essentials/ch12/01_references
 04-cpp-essentials/ch12/02_pass_by_ref
+04-cpp-essentials/ch12/03_pointers-basics
+04-cpp-essentials/ch12/04_pointers-reassign
+04-cpp-essentials/ch12/05_pointers-const
+04-cpp-essentials/ch12/06_pass_by_adress
+
+
+
+
