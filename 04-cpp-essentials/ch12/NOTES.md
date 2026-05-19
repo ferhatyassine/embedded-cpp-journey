@@ -187,7 +187,7 @@ if (p) {/* forme courte idiomatique*/}
 ### `const` avec pointer
 3 variantes a distinguer (lecture **droite - a - gauche**):
 |Forme                  | Modifier `*ptr` ? | Reassigner `ptr` ? |
-|-----------------------|-------------------|--------------------|
+|---|---|---|
 |`int* ptr`             |        YES        |         YES        |
 |`const int* ptr`       |        NO         |         YES        |
 |`int* const ptr`       |        YES        |         NO         |
@@ -231,6 +231,7 @@ t->done = true; // equivalent a (*t).done = true
 ### pointers vs references - la comparaison final 
 
 |critere            |    reference `T&` | pointer `T*`        |
+|---|---|---|
 |init obligatoire   |         ✅        |       ❌           |
 |peut etre null     |         ❌        | ✅ (`nullptr`)     |
 |reassignable       |         ❌        |       ✅           |
@@ -239,6 +240,7 @@ t->done = true; // equivalent a (*t).done = true
 ---
 **regle pro de choix de parametre de fonction** :
 |CAS                                 |   Forme a utiliser   |
+|---|---|
 |Type primitif, lecture              |  `T` (par valeur)    |
 |Gros objet , lecture, jamais null   | `const T&`           |
 |Gros objet , lecture,peut etre null | `const T*`           |
